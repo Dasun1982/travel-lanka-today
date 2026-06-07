@@ -1,7 +1,7 @@
 export default {
   cacheDir: `.vite-cache-${Date.now()}`,
   build: {
-    outDir: 'dist-luxury',
+    outDir: 'dist',
     emptyOutDir: false
   },
   resolve: {
