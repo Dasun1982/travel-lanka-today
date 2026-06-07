@@ -9,6 +9,7 @@ import GalleryMasonry from './components/home/GalleryMasonry.jsx';
 import FinalCTA from './components/home/FinalCTA.jsx';
 import ToursPage from './components/pages/ToursPage.jsx';
 import GuidePage from './components/pages/GuidePage.jsx';
+import ContactPage from './components/pages/ContactPage.jsx';
 import ScrollReveal from './components/shared/ScrollReveal.jsx';
 
 function getCurrentPage() {
@@ -24,6 +25,10 @@ function getCurrentPage() {
 
   if (path === '/guide') {
     return 'guide';
+  }
+
+  if (path === '/contact') {
+    return 'contact';
   }
 
   return 'home';
@@ -48,6 +53,8 @@ function App() {
         <ToursPage />
       ) : currentPage === 'guide' ? (
         <GuidePage />
+      ) : currentPage === 'contact' ? (
+        <ContactPage />
       ) : (
         <main>
           <Hero />

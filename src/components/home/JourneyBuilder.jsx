@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
+import { contactDetails } from '../../data/siteData.js';
 
 const dayOptions = ['5', '7', '10', '14+'];
 const interestOptions = ['Wildlife', 'Culture', 'Nature', 'Adventure', 'Beach'];
@@ -8,18 +9,6 @@ function JourneyBuilder() {
   const [days, setDays] = useState('10');
   const [interests, setInterests] = useState(['Wildlife', 'Culture', 'Nature']);
   const [style, setStyle] = useState('Luxury');
-
-  const whatsappText = useMemo(() => {
-    const message = [
-      'Hello Kithsiri, I would like to plan a private Sri Lanka journey.',
-      `Days: ${days}`,
-      `Interests: ${interests.join(', ') || 'Open to your recommendation'}`,
-      `Travel style: ${style}`,
-      'Please help me design a custom route.'
-    ].join('\n');
-
-    return encodeURIComponent(message);
-  }, [days, interests, style]);
 
   const toggleInterest = (interest) => {
     setInterests((current) =>
@@ -106,9 +95,9 @@ function JourneyBuilder() {
 
           <a
             className="button button-primary builder-whatsapp"
-            href={`https://wa.me/94771234567?text=${whatsappText}`}
+            href={contactDetails.whatsappHref}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             WhatsApp This Journey
           </a>

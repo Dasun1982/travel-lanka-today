@@ -1,11 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { assets, navLinks } from '../../data/siteData.js';
-
-const whatsappMessage = encodeURIComponent(
-  'Hello Kithsiri, I would like to plan a private Sri Lanka journey with Travel Lanka Today.'
-);
-
-const whatsappHref = `https://wa.me/94771234567?text=${whatsappMessage}`;
+import { assets, contactDetails, navLinks } from '../../data/siteData.js';
 
 const icons = {
   home: (
@@ -51,7 +45,7 @@ const mobileLinks = [
   { label: 'Tours', href: '/tours', key: 'tours', icon: 'tours' },
   { label: 'Experiences', href: '#experiences', key: 'experiences', icon: 'experiences' },
   { label: 'Gallery', href: '#gallery', key: 'gallery', icon: 'gallery' },
-  { label: 'WhatsApp', href: whatsappHref, key: 'whatsapp', matchHref: '#plan', icon: 'whatsapp', external: true }
+  { label: 'WhatsApp', href: contactDetails.whatsappHref, key: 'whatsapp', matchHref: '#plan', icon: 'whatsapp', external: true }
 ];
 
 function NavIcon({ name }) {
@@ -71,7 +65,7 @@ function getCurrentPath() {
 }
 
 function isPagePath(path) {
-  return path === '/tours' || path === '/guide';
+  return path === '/tours' || path === '/guide' || path === '/contact';
 }
 
 function getPageHref(href, currentPath) {
@@ -206,12 +200,12 @@ function Header() {
                 </a>
               ))}
             </nav>
-            <a className="desktop-whatsapp" href={whatsappHref} target="_blank" rel="noreferrer">
+            <a className="desktop-whatsapp" href={contactDetails.whatsappHref} target="_blank" rel="noopener noreferrer">
               WhatsApp
             </a>
           </div>
 
-          <a className="mobile-top-whatsapp" href={whatsappHref} target="_blank" rel="noreferrer">
+          <a className="mobile-top-whatsapp" href={contactDetails.whatsappHref} target="_blank" rel="noopener noreferrer">
             WhatsApp
           </a>
         </div>
@@ -234,7 +228,7 @@ function Header() {
             key={link.key}
             ref={setMobileItemRef(link.key)}
             target={link.external ? '_blank' : undefined}
-            rel={link.external ? 'noreferrer' : undefined}
+            rel={link.external ? 'noopener noreferrer' : undefined}
             onClick={() => setActiveHref(link.matchHref || link.href)}
           >
             <NavIcon name={link.icon} />

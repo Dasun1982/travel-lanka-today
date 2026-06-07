@@ -1,4 +1,4 @@
-import { assets, navLinks } from '../../data/siteData.js';
+import { assets, contactDetails, navLinks } from '../../data/siteData.js';
 
 function getCurrentPath() {
   if (typeof window === 'undefined') {
@@ -9,7 +9,7 @@ function getCurrentPath() {
 }
 
 function isPagePath(path) {
-  return path === '/tours' || path === '/guide';
+  return path === '/tours' || path === '/guide' || path === '/contact';
 }
 
 function getFooterHref(href) {
@@ -47,18 +47,18 @@ function Footer() {
           <h3>Plan Your Journey</h3>
           <a
             className="footer-whatsapp"
-            href="https://wa.me/94771234567?text=Hello%20Kithsiri%2C%20I%20would%20like%20to%20plan%20my%20Sri%20Lanka%20journey."
+            href={contactDetails.whatsappHref}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             WhatsApp Kithsiri →
           </a>
           <ul>
             <li>
-              <a href="tel:+94771234567">+94 77 123 4567</a>
+              <a href={contactDetails.phoneHref}>{contactDetails.phone}</a>
             </li>
             <li>
-              <a href="mailto:hello@travellankatoday.com">hello@travellankatoday.com</a>
+              <a href={contactDetails.emailHref}>{contactDetails.email}</a>
             </li>
           </ul>
         </div>

@@ -20,13 +20,32 @@ export const assets = {
   jungleBeach: new URL('../../images/jungle beach.webp', import.meta.url).href
 };
 
+const defaultWhatsAppMessage = 'Hi Kithsiri, I’m interested in a private Sri Lanka tour.';
+
+export const contactDetails = {
+  phone: '+94 77 123 4567',
+  phoneCompact: '+94771234567',
+  phoneHref: 'tel:+94771234567',
+  email: 'hello@travellankatoday.com',
+  emailHref: 'mailto:hello@travellankatoday.com',
+  instagramHandle: '@travellankatoday',
+  instagramUrl: 'https://instagram.com/travellankatoday',
+  whatsappNumber: '94771234567',
+  whatsappDefaultMessage: defaultWhatsAppMessage,
+  whatsappHref: `https://wa.me/94771234567?text=${encodeURIComponent(defaultWhatsAppMessage)}`
+};
+
+export function getWhatsAppHref(message = contactDetails.whatsappDefaultMessage) {
+  return `https://wa.me/${contactDetails.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
 export const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'Guide', href: '/guide' },
   { label: 'Tours', href: '/tours' },
   { label: 'Experiences', href: '#experiences' },
   { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '#plan' }
+  { label: 'Contact', href: '/contact' }
 ];
 
 export const guideTimeline = [

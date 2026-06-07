@@ -1,6 +1,4 @@
-const whatsappMessage = encodeURIComponent(
-  'Hello Kithsiri, I would like to start planning my Sri Lanka journey beyond the guidebooks.'
-);
+import { contactDetails } from '../../data/siteData.js';
 
 function FinalCTA() {
   return (
@@ -10,9 +8,9 @@ function FinalCTA() {
         <div className="final-cta-actions">
           <a
             className="button button-primary"
-            href={`https://wa.me/94771234567?text=${whatsappMessage}`}
+            href={contactDetails.whatsappHref}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             WhatsApp Kithsiri
           </a>

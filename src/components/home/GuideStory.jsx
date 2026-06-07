@@ -1,8 +1,4 @@
-import { assets, guideTimeline } from '../../data/siteData.js';
-
-const whatsappMessage = encodeURIComponent(
-  'Hello Kithsiri, I would like to plan a private Sri Lanka journey with you.'
-);
+import { assets, contactDetails, guideTimeline } from '../../data/siteData.js';
 
 function GuideStory() {
   return (
@@ -73,10 +69,10 @@ function GuideStory() {
           </div>
 
           <a
-            href={`https://wa.me/94771234567?text=${whatsappMessage}`}
+            href={contactDetails.whatsappHref}
             className="button button-primary guide-story-cta"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             WhatsApp Kithsiri
           </a>

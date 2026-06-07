@@ -1,6 +1,4 @@
-const whatsappMessage = encodeURIComponent(
-  'Hello Kithsiri, I would like help planning a private multi-day Sri Lanka journey.'
-);
+import { contactDetails } from '../../data/siteData.js';
 
 function WhatsAppTripPlanner() {
   return (
@@ -19,9 +17,9 @@ function WhatsAppTripPlanner() {
           </p>
           <a
             className="button button-primary"
-            href={`https://wa.me/94771234567?text=${whatsappMessage}`}
+            href={contactDetails.whatsappHref}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             WhatsApp Kithsiri
           </a>

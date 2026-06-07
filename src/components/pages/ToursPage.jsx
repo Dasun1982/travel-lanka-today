@@ -1,17 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { tours } from '../../data/siteData.js';
+import { contactDetails, tours } from '../../data/siteData.js';
 
-const whatsappBase = 'https://wa.me/94771234567';
-
-function getTourMessage(tourTitle) {
-  return `${whatsappBase}?text=${encodeURIComponent(
-    `Hello Kithsiri, I would like to ask about the ${tourTitle}.`
-  )}`;
+function getTourMessage() {
+  return contactDetails.whatsappHref;
 }
 
-const pageMessage = `${whatsappBase}?text=${encodeURIComponent(
-  'Hello Kithsiri, I would like help choosing a private Sri Lanka tour.'
-)}`;
+const pageMessage = contactDetails.whatsappHref;
 
 const tourDetails = {
   '5 Day Highlights Tour': {
@@ -261,7 +255,7 @@ function ToursPage() {
           </p>
           <p>Every route can be customized around your travel dates, interests, pace, and comfort.</p>
           <div className="tours-hero-actions">
-            <a className="button button-primary" href={pageMessage} target="_blank" rel="noreferrer">
+            <a className="button button-primary" href={pageMessage} target="_blank" rel="noopener noreferrer">
               WhatsApp Kithsiri
             </a>
             <a className="button button-secondary" href="/">
@@ -299,7 +293,7 @@ function ToursPage() {
                   <button className="tour-about-button" type="button" onClick={() => setSelectedTour(tour)}>
                     About this tour
                   </button>
-                  <a className="tour-inquiry" href={getTourMessage(tour.title)} target="_blank" rel="noreferrer">
+                  <a className="tour-inquiry" href={getTourMessage(tour.title)} target="_blank" rel="noopener noreferrer">
                     WhatsApp inquiry
                   </a>
                 </div>
@@ -313,7 +307,7 @@ function ToursPage() {
         <div className="container tours-help-panel reveal">
           <h2>Need help choosing the right route?</h2>
           <p>Send your dates and interests to Kithsiri and he will suggest the best journey.</p>
-          <a className="button button-primary" href={pageMessage} target="_blank" rel="noreferrer">
+          <a className="button button-primary" href={pageMessage} target="_blank" rel="noopener noreferrer">
             Ask on WhatsApp
           </a>
         </div>
@@ -378,7 +372,7 @@ function ToursPage() {
                 <p>{selectedDetails.price}</p>
               </section>
 
-              <a className="tour-modal-whatsapp" href={getTourMessage(selectedTour.title)} target="_blank" rel="noreferrer">
+              <a className="tour-modal-whatsapp" href={getTourMessage(selectedTour.title)} target="_blank" rel="noopener noreferrer">
                 WhatsApp inquiry
               </a>
             </div>

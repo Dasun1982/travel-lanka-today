@@ -1,8 +1,4 @@
-import { assets } from '../../data/siteData.js';
-
-const whatsappMessage = encodeURIComponent(
-  'Hello Kithsiri, I would like to plan a private Sri Lanka journey with Travel Lanka Today.'
-);
+import { assets, contactDetails } from '../../data/siteData.js';
 
 function Hero() {
   return (
@@ -21,10 +17,10 @@ function Hero() {
               Plan My Journey
             </a>
             <a
-              href={`https://wa.me/94771234567?text=${whatsappMessage}`}
+              href={contactDetails.whatsappHref}
               className="button button-secondary"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               WhatsApp Kithsiri
             </a>

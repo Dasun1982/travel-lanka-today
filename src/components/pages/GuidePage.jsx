@@ -1,9 +1,6 @@
-const guideImage = new URL('../../../images/Kithsiri.jpeg', import.meta.url).href;
+import { contactDetails } from '../../data/siteData.js';
 
-const whatsappMessage = encodeURIComponent(
-  'Hello Kithsiri, I would like to plan a private Sri Lanka journey with you.'
-);
-const whatsappHref = `https://wa.me/94771234567?text=${whatsappMessage}`;
+const guideImage = new URL('../../../images/Kithsiri.jpeg', import.meta.url).href;
 
 const guideFeatures = [
   '20+ Years Experience',
@@ -71,7 +68,7 @@ function GuidePage() {
               ))}
             </div>
 
-            <a className="button button-primary guide-whatsapp" href={whatsappHref} target="_blank" rel="noreferrer">
+            <a className="button button-primary guide-whatsapp" href={contactDetails.whatsappHref} target="_blank" rel="noopener noreferrer">
               WhatsApp Kithsiri
             </a>
           </div>
@@ -136,7 +133,7 @@ function GuidePage() {
         <div className="container guide-final-panel reveal">
           <h2>Ready to explore Sri Lanka with Kithsiri?</h2>
           <p>Private tours, flexible itineraries, and local expertise for a journey shaped around you.</p>
-          <a className="button button-primary" href={whatsappHref} target="_blank" rel="noreferrer">
+          <a className="button button-primary" href={contactDetails.whatsappHref} target="_blank" rel="noopener noreferrer">
             WhatsApp Kithsiri
           </a>
         </div>
