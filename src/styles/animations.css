@@ -1,0 +1,9 @@
+@keyframes heroImageDrift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.03);
+  }
+
+  to {
+    transform: translate3d(-1.4%, -1%, 0) scale(1.08);
+  }
+}

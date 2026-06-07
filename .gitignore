@@ -1,0 +1,8 @@
+node_modules
+dist
+.vite
+.vite-cache-*
+.npm-cache
+.env
+.env.local
+*.log
