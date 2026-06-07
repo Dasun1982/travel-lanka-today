@@ -47,7 +47,7 @@ const icons = {
 
 const mobileLinks = [
   { label: 'Home', href: '#home', key: 'home', icon: 'home' },
-  { label: 'Guide', href: '#meet', key: 'guide', icon: 'guide' },
+  { label: 'Guide', href: '/guide', key: 'guide', icon: 'guide' },
   { label: 'Tours', href: '/tours', key: 'tours', icon: 'tours' },
   { label: 'Experiences', href: '#experiences', key: 'experiences', icon: 'experiences' },
   { label: 'Gallery', href: '#gallery', key: 'gallery', icon: 'gallery' },
@@ -62,12 +62,20 @@ function NavIcon({ name }) {
   );
 }
 
-function isToursPath() {
-  return typeof window !== 'undefined' && window.location.pathname.replace(/\/$/, '') === '/tours';
+function getCurrentPath() {
+  if (typeof window === 'undefined') {
+    return '';
+  }
+
+  return window.location.pathname.replace(/\/$/, '');
 }
 
-function getPageHref(href, isToursPage) {
-  if (isToursPage && href.startsWith('#')) {
+function isPagePath(path) {
+  return path === '/tours' || path === '/guide';
+}
+
+function getPageHref(href, currentPath) {
+  if (isPagePath(currentPath) && href.startsWith('#')) {
     return `/${href}`;
   }
 
@@ -76,8 +84,11 @@ function getPageHref(href, isToursPage) {
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isToursPage, setIsToursPage] = useState(isToursPath);
-  const [activeHref, setActiveHref] = useState(() => (isToursPath() ? '/tours' : '#home'));
+  const [currentPath, setCurrentPath] = useState(getCurrentPath);
+  const [activeHref, setActiveHref] = useState(() => {
+    const path = getCurrentPath();
+    return isPagePath(path) ? path : '#home';
+  });
   const desktopPillRef = useRef(null);
   const mobilePillRef = useRef(null);
   const desktopItemRefs = useRef({});
@@ -91,12 +102,12 @@ function Header() {
 
   useEffect(() => {
     const updateActive = () => {
-      const onToursPage = isToursPath();
+      const path = getCurrentPath();
       setIsScrolled(window.scrollY > 24);
-      setIsToursPage(onToursPage);
+      setCurrentPath(path);
 
-      if (onToursPage) {
-        setActiveHref('/tours');
+      if (isPagePath(path)) {
+        setActiveHref(path);
         return;
       }
 
@@ -161,7 +172,7 @@ function Header() {
     mobileItemRefs.current[key] = node;
   };
 
-  const brandHref = isToursPage ? '/' : '#home';
+  const brandHref = isPagePath(currentPath) ? '/' : '#home';
 
   return (
     <>
@@ -186,7 +197,7 @@ function Header() {
               {navLinks.map((link) => (
                 <a
                   className={`nav-pill-link ${activeHref === link.href ? 'is-active' : ''}`}
-                  href={getPageHref(link.href, isToursPage)}
+                  href={getPageHref(link.href, currentPath)}
                   key={link.href}
                   ref={setDesktopItemRef(link.href)}
                   onClick={() => setActiveHref(link.href)}
@@ -219,7 +230,7 @@ function Header() {
         {mobileLinks.map((link) => (
           <a
             className={`mobile-nav-link ${mobileActiveKey === link.key ? 'is-active' : ''}`}
-            href={getPageHref(link.href, isToursPage)}
+            href={getPageHref(link.href, currentPath)}
             key={link.key}
             ref={setMobileItemRef(link.key)}
             target={link.external ? '_blank' : undefined}

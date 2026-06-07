@@ -8,17 +8,32 @@ import ToursPreview from './components/home/ToursPreview.jsx';
 import GalleryMasonry from './components/home/GalleryMasonry.jsx';
 import FinalCTA from './components/home/FinalCTA.jsx';
 import ToursPage from './components/pages/ToursPage.jsx';
+import GuidePage from './components/pages/GuidePage.jsx';
 import ScrollReveal from './components/shared/ScrollReveal.jsx';
 
-function isToursPath() {
-  return typeof window !== 'undefined' && window.location.pathname.replace(/\/$/, '') === '/tours';
+function getCurrentPage() {
+  if (typeof window === 'undefined') {
+    return 'home';
+  }
+
+  const path = window.location.pathname.replace(/\/$/, '');
+
+  if (path === '/tours') {
+    return 'tours';
+  }
+
+  if (path === '/guide') {
+    return 'guide';
+  }
+
+  return 'home';
 }
 
 function App() {
-  const [showToursPage, setShowToursPage] = useState(isToursPath);
+  const [currentPage, setCurrentPage] = useState(getCurrentPage);
 
   useEffect(() => {
-    const updatePage = () => setShowToursPage(isToursPath());
+    const updatePage = () => setCurrentPage(getCurrentPage());
 
     window.addEventListener('popstate', updatePage);
 
@@ -27,10 +42,12 @@ function App() {
 
   return (
     <>
-      <ScrollReveal pageKey={showToursPage ? 'tours' : 'home'} />
+      <ScrollReveal pageKey={currentPage} />
       <Header />
-      {showToursPage ? (
+      {currentPage === 'tours' ? (
         <ToursPage />
+      ) : currentPage === 'guide' ? (
+        <GuidePage />
       ) : (
         <main>
           <Hero />

@@ -1,11 +1,19 @@
 import { assets, navLinks } from '../../data/siteData.js';
 
-function isToursPath() {
-  return typeof window !== 'undefined' && window.location.pathname.replace(/\/$/, '') === '/tours';
+function getCurrentPath() {
+  if (typeof window === 'undefined') {
+    return '';
+  }
+
+  return window.location.pathname.replace(/\/$/, '');
+}
+
+function isPagePath(path) {
+  return path === '/tours' || path === '/guide';
 }
 
 function getFooterHref(href) {
-  if (isToursPath() && href.startsWith('#')) {
+  if (isPagePath(getCurrentPath()) && href.startsWith('#')) {
     return `/${href}`;
   }
 
@@ -17,7 +25,7 @@ function Footer() {
     <footer className="site-footer reveal">
       <div className="footer-panel">
         <div className="footer-brand">
-          <a href={isToursPath() ? '/' : '#home'} className="footer-logo">
+          <a href={isPagePath(getCurrentPath()) ? '/' : '#home'} className="footer-logo">
             <img src={assets.logo} alt="" />
             <span>Travel Lanka Today</span>
           </a>

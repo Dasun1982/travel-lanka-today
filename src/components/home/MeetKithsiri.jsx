@@ -1,4 +1,5 @@
 const guideImage = new URL('../../../images/Kithsiri.jpeg', import.meta.url).href;
+const guideHref = '/guide';
 
 const featurePills = [
   '20+ Years Experience',
@@ -46,12 +47,22 @@ function MeetKithsiri() {
 
             <div className="meet-actions">
               <a
+                className="button meet-profile-button"
+                href={guideHref}
+              >
+                View Full Guide Profile
+              </a>
+              <a
                 className="button meet-primary"
                 href="#plan"
               >
                 Plan My Journey
               </a>
             </div>
+
+            <a className="meet-profile-link" href={guideHref}>
+              Learn more about Kithsiri <span aria-hidden="true">&rarr;</span>
+            </a>
 
             <div className="meet-stats" aria-label="Kithsiri guide highlights">
               {stats.map((stat) => (
@@ -65,9 +76,11 @@ function MeetKithsiri() {
 
           <div className="meet-visual">
             <div className="meet-photo-glow" aria-hidden="true" />
-            <figure className="meet-media">
-              <img src={guideImage} alt="Kithsiri, private Sri Lanka driver and guide" loading="lazy" />
-            </figure>
+            <a className="meet-media-link" href={guideHref} aria-label="View Kithsiri's full guide profile">
+              <figure className="meet-media">
+                <img src={guideImage} alt="Kithsiri, private Sri Lanka driver and guide" loading="lazy" />
+              </figure>
+            </a>
             {infoCards.map((card, index) => (
               <span className={`meet-info-card meet-info-card--${index + 1}`} key={card.title}>
                 <strong>{card.title}</strong>

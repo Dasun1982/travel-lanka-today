@@ -22,7 +22,7 @@ export const assets = {
 
 export const navLinks = [
   { label: 'Home', href: '#home' },
-  { label: 'Guide', href: '#meet' },
+  { label: 'Guide', href: '/guide' },
   { label: 'Tours', href: '/tours' },
   { label: 'Experiences', href: '#experiences' },
   { label: 'Gallery', href: '#gallery' },
